@@ -1,6 +1,6 @@
 'use client'
 import { usePathname, useRouter } from 'next/navigation'
-import { Bell, Plus } from 'lucide-react'
+import { Bell, Plus, Search } from 'lucide-react'
 
 const titleMap: Record<string, string> = {
   '/dashboard':    'Dashboard',
@@ -21,31 +21,34 @@ export default function Topbar() {
   const title    = titleMap[pathname] ?? 'Dashboard'
 
   return (
-    <header style={{
-      background: '#fff', borderBottom: '1px solid #e5e8ef',
-      padding: '0 1.25rem', height: 52, display: 'flex',
-      alignItems: 'center', justifyContent: 'space-between', flexShrink: 0
-    }}>
-      <div>
-        <div style={{ fontWeight: 700, fontSize: 14, color: '#1a1d23' }}>{title}</div>
-        <div style={{ fontSize: 10.5, color: '#9aa3b0' }}>Wednesday, 29 April 2025 · Welcome back, Mr. Essa</div>
+    <header className="sticky top-0 z-50 bg-surface/60 backdrop-blur-xl border-b border-white/20 h-20 px-8 flex items-center justify-between shrink-0 shadow-sm">
+      <div className="flex items-center gap-6">
+        <div>
+          <h1 className="text-2xl font-bold text-navy-900 tracking-tight">{title}</h1>
+          <p className="text-sm font-medium text-navy-400 mt-0.5">Welcome back, Mr. Essa · Wednesday, 29 April 2026</p>
+        </div>
       </div>
 
-      <div className="flex items-center gap-2.5">
-        <button className="btn btn-outline relative" style={{ padding: '6px 10px' }}>
-          <Bell size={15} />
-          <span style={{
-            position: 'absolute', top: 4, right: 4,
-            width: 8, height: 8, borderRadius: '50%',
-            background: '#ef4444', border: '2px solid #fff'
-          }} />
+      <div className="flex items-center gap-4">
+        <div className="relative hidden md:block mr-2">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-400" size={16} />
+          <input 
+            type="text" 
+            placeholder="Quick search..." 
+            className="pl-9 pr-4 py-2 bg-navy-50/50 border border-transparent focus:border-brand/30 focus:bg-white rounded-full text-sm font-medium outline-none transition-all w-64"
+          />
+        </div>
+
+        <button className="relative p-2.5 rounded-full text-navy-500 hover:text-navy-900 hover:bg-navy-50 transition-colors">
+          <Bell size={20} />
+          <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white animate-pulse" />
         </button>
 
         <button
-          className="btn btn-primary"
+          className="btn btn-primary animate-pulse-glow rounded-full px-5"
           onClick={() => router.push('/search')}
         >
-          <Plus size={12} /> New Tenant Check
+          <Plus size={16} /> <span className="font-bold">New Tenant Check</span>
         </button>
       </div>
     </header>

@@ -39,42 +39,40 @@ export default function Sidebar() {
   const router   = useRouter()
 
   return (
-    <aside className="flex flex-col flex-shrink-0" style={{ width: 220, background: '#0c1a2e' }}>
+    <aside className="flex flex-col flex-shrink-0 w-[240px] bg-navy-900 border-r border-navy-800 relative z-20">
+      
+      {/* Glow effect */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-brand/10 blur-[50px] pointer-events-none" />
 
       {/* Logo */}
-      <div style={{ padding: '1.2rem 1rem 0.9rem', borderBottom: '1px solid #162337' }}>
-        <div className="flex items-center gap-2">
-          <div style={{
-            width: 33, height: 33, background: '#06d6a0', borderRadius: 8,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 900, fontSize: 15, color: '#0c1a2e'
-          }}>▲</div>
+      <div className="px-6 py-8 border-b border-navy-800/50 relative z-10">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-brand rounded-xl flex items-center justify-center font-black text-lg text-navy-900 shadow-lg shadow-brand/20">
+            ▲
+          </div>
           <div>
-            <div style={{ color: '#fff', fontWeight: 800, fontSize: 14, letterSpacing: '-0.02em' }}>Triangletech</div>
-            <div style={{ color: '#2e4a66', fontSize: 9.5, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Landlord Portal</div>
+            <div className="text-white font-bold text-[15px] tracking-tight">Triangletech</div>
+            <div className="text-brand text-[9px] font-bold tracking-[0.15em] uppercase">Landlord Portal</div>
           </div>
         </div>
       </div>
 
       {/* User */}
-      <div style={{ padding: '0.9rem 1rem', borderBottom: '1px solid #162337', display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div style={{
-          width: 33, height: 33, borderRadius: '50%',
-          background: 'linear-gradient(135deg, #06d6a0, #0ea5e9)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 12, fontWeight: 800, color: '#fff', flexShrink: 0
-        }}>ME</div>
-        <div>
-          <div style={{ color: '#e2ecf5', fontSize: 12.5, fontWeight: 600 }}>Mr. Essa</div>
-          <div style={{ color: '#2e4a66', fontSize: 10 }}>Pro Member</div>
+      <div className="px-6 py-5 border-b border-navy-800/50 flex items-center gap-3 relative z-10">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand to-blue-500 flex items-center justify-center text-sm font-bold text-white shrink-0 shadow-lg shadow-brand/10 ring-2 ring-navy-800">
+          ME
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-gray-100 text-sm font-bold truncate">Mr. Essa</div>
+          <div className="text-brand/80 text-[10px] font-semibold uppercase tracking-wider">Pro Member</div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav style={{ flex: 1, padding: '0.5rem 0.5rem', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto' }}>
+      <nav className="flex-1 p-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar relative z-10">
         {NAV_SECTIONS.map(section => (
-          <div key={section.label}>
-            <div style={{ fontSize: 9, color: '#2e4a66', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '8px 11px 4px' }}>
+          <div key={section.label} className="flex flex-col gap-1">
+            <div className="text-[10px] text-navy-400 font-bold tracking-[0.1em] uppercase px-3 mb-1">
               {section.label}
             </div>
             {section.items.map(({ icon: Icon, label, href, badge }) => {
@@ -83,13 +81,12 @@ export default function Sidebar() {
                 <button
                   key={href}
                   onClick={() => router.push(href)}
-                  className="nav-btn"
-                  style={isActive ? { background: '#1e2f45', color: '#06d6a0', fontWeight: 600 } : {}}
+                  className={`nav-btn group ${isActive ? 'active' : ''}`}
                 >
-                  <Icon size={14} />
-                  <span style={{ flex: 1 }}>{label}</span>
+                  <Icon size={16} className={isActive ? 'text-brand' : 'text-navy-400 group-hover:text-white transition-colors'} />
+                  <span className="flex-1">{label}</span>
                   {badge != null && (
-                    <span style={{ background: '#ef4444', color: '#fff', fontSize: 9, fontWeight: 800, borderRadius: 10, padding: '1px 6px' }}>
+                    <span className="bg-red-500 text-white text-[9px] font-bold rounded-full px-2 py-0.5 shadow-sm shadow-red-500/20">
                       {badge}
                     </span>
                   )}
@@ -101,9 +98,10 @@ export default function Sidebar() {
       </nav>
 
       {/* Sign out */}
-      <div style={{ padding: '0.5rem', borderTop: '1px solid #162337' }}>
-        <button className="nav-btn" style={{ color: '#2e4a66' }}>
-          <LogOut size={13} /> Sign Out
+      <div className="p-4 border-t border-navy-800/50 relative z-10 bg-navy-900/50 backdrop-blur-md">
+        <button className="nav-btn w-full hover:bg-red-500/10 hover:text-red-400 group">
+          <LogOut size={16} className="text-navy-400 group-hover:text-red-400 transition-colors" /> 
+          <span className="font-semibold">Sign Out</span>
         </button>
       </div>
     </aside>
