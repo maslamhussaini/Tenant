@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f0f2f6;
+    color: #1a1d23;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .nav-btn {
+    @apply flex items-center gap-2 px-3 py-2 rounded-lg border-none text-[#6b7fa0] text-sm font-normal w-full text-left cursor-pointer transition-all duration-150 bg-transparent;
+  }
+  .nav-btn:hover {
+    background: #1a2535;
+    color: #a0b4c8;
+  }
+  .nav-btn.active {
+    background: #1e2f45;
+    color: #06d6a0;
+    font-weight: 600;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-[#e5e8ef];
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold;
+  }
+  .btn {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-none text-xs font-semibold cursor-pointer transition-all duration-150;
+  }
+  .btn-primary {
+    @apply bg-[#06d6a0] text-white;
+  }
+  .btn-primary:hover {
+    background: #04b584;
+  }
+  .btn-outline {
+    @apply bg-transparent border border-[#e5e8ef] text-[#6b7fa0];
+  }
+  .btn-outline:hover {
+    background: #f7f8fa;
+  }
+  .form-label {
+    @apply block text-[11px] font-semibold text-[#6b7fa0] mb-1 tracking-wide;
+  }
+  .form-input {
+    @apply w-full px-2.5 py-2 border border-[#dde1ea] rounded-lg font-sans text-xs text-[#1a1d23] bg-white outline-none transition-all;
+  }
+  .form-input:focus {
+    border-color: #06d6a0;
+    box-shadow: 0 0 0 3px #06d6a015;
+  }
+  .section-title {
+    @apply text-sm font-bold text-[#1a1d23];
+  }
+  .section-sub {
+    @apply text-[11px] text-[#8a95a8] mt-0.5;
+  }
+  .table-th {
+    @apply text-left py-1.5 px-3 text-[10px] font-bold text-[#9aa3b0] tracking-widest uppercase bg-[#f7f8fa] border-b border-[#f0f2f6];
+  }
+  .table-td {
+    @apply py-2.5 px-3 border-b border-[#f5f6f9] text-xs text-[#2d3748];
+  }
+  tr:hover .table-td {
+    background: #fafbfd;
+  }
+}
